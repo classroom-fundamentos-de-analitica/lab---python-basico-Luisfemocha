@@ -9,15 +9,15 @@ básicas.
 
 Utilice el archivo `data.csv` para resolver las preguntas.
 
-
 """
-archivo= open("data.csv","r")
-datos= [i.split() for i in archivo.read().split("\n")]      #for i in range(40): datos[i]= datos[i].split("	")
-archivo.close()
 
 def pregunta_01():
     """Retorne la suma de la segunda columna. Rta/ 214"""
+    archivo= open("data.csv","r")
+    datos= [i.split() for i in archivo.read().split("\n")]
+
     res= sum(int(i[1]) for i in datos)   # suma de la segunda columna for i in datos: res+= int(i[1])
+    archivo.close()
     return res
 
 def pregunta_02():
@@ -30,9 +30,10 @@ def pregunta_02():
         ("D", 6),
         ("E", 14),
     ]"""
+    archivo= open("data.csv","r")
+    datos= [i.split() for i in archivo.read().split("\n")]
 
-    dif2={}                 # letras diferentes dif2 = list(set(i[0] for i in datos))
-    #resString= '['          # string a devolver... resultado
+    dif2={}
     for aux in datos:
         if aux[0] not in dif2.keys():
             dif2[aux[0]]= 1
@@ -42,9 +43,7 @@ def pregunta_02():
     res=[]
     for a in sorted(dif2):
         res.append((a,dif2[a]))
-        #resString+='\n    ("'+a+'", '+str(dif2[a])+'),'
-    #resString+='\n]'
-
+    archivo.close()
     return res
 
 def pregunta_03():
@@ -57,6 +56,8 @@ def pregunta_03():
         ("D", 31),
         ("E", 67),
     ]"""
+    archivo= open("data.csv","r")
+    datos= [i.split() for i in archivo.read().split("\n")]
 
     dif3={}         # letras diferentes dif3 = list(set(i[0] for i in datos))
     for aux in datos:
@@ -68,7 +69,7 @@ def pregunta_03():
     res=[]
     for a in sorted(dif3):
         res.append((a,dif3[a]))
-
+    archivo.close()
     return res
 
 def pregunta_04():
@@ -88,6 +89,8 @@ def pregunta_04():
         ("11", 2),
         ("12", 3),
     ]"""
+    archivo= open("data.csv","r")
+    datos= [i.split() for i in archivo.read().split("\n")]
 
     meses4={}   # meses diferentes
     res= '['    # string a devolver...
@@ -101,7 +104,7 @@ def pregunta_04():
     res=[]
     for mes in sorted(meses4):
         res.append((mes,meses4[mes]))
-
+    archivo.close()
     return res
 
 def pregunta_05():
@@ -114,6 +117,8 @@ def pregunta_05():
         ("D", 8, 3),
         ("E", 9, 1),
     ]"""
+    archivo= open("data.csv","r")
+    datos= [i.split() for i in archivo.read().split("\n")]
 
     max5={}     # maximos
     min5={}     # minimos
@@ -131,7 +136,7 @@ def pregunta_05():
     res=[]
     for a in sorted(max5):
         res.append((a,max5[a],min5[a]))
-
+    archivo.close()
     return res
 
 def pregunta_06():
@@ -149,6 +154,8 @@ def pregunta_06():
         ("iii", 0, 9),
         ("jjj", 5, 17),
     ]"""
+    archivo= open("data.csv","r")
+    datos= [i.split() for i in archivo.read().split("\n")]
 
     max6={}     # maximos
     min6={}     # minimos
@@ -170,7 +177,7 @@ def pregunta_06():
     res=[]
     for a in sorted(max6):
         res.append((a,min6[a],max6[a]))
-
+    archivo.close()
     return res
 
 def pregunta_07():
@@ -188,6 +195,8 @@ def pregunta_07():
         (8, ["E", "D", "E", "A", "B"]),
         (9, ["A", "B", "E", "A", "A", "C"]),
     ]"""
+    archivo= open("data.csv","r")
+    datos= [i.split() for i in archivo.read().split("\n")]
 
     dif7={}     # numeros diferentes
     for aux in datos:
@@ -199,7 +208,7 @@ def pregunta_07():
     res=[]
     for a in sorted(dif7):
         res.append((a,dif7[a]))
-
+    archivo.close()
     return res
 
 def pregunta_08():
@@ -218,6 +227,8 @@ def pregunta_08():
         (8, ["A", "B", "D", "E"]),
         (9, ["A", "B", "C", "E"]),
     ]"""
+    archivo= open("data.csv","r")
+    datos= [i.split() for i in archivo.read().split("\n")]
 
     dif8={}     # numeros diferentes
     for aux in datos:
@@ -230,12 +241,11 @@ def pregunta_08():
     res=[]
     for a in sorted(dif8):
         res.append((a,dif8[a]))
-
+    archivo.close()
     return res
 
 def pregunta_09():
     """ Retorne un diccionario que contenga la cantidad de registros en que aparece cada clave de la columna 5.
-
     Rta/
     {
         "aaa": 13,
@@ -249,8 +259,9 @@ def pregunta_09():
         "iii": 18,
         "jjj": 18,
     }
-
     """
+    archivo= open("data.csv","r")
+    datos= [i.split() for i in archivo.read().split("\n")]
     dif9={}     # claves diferentes
     for aux in datos:   # jjj:12,bbb:3,ddd:9,ggg:8,hhh:2
         for elemento in aux[4].split(','):
@@ -258,7 +269,7 @@ def pregunta_09():
                 dif9[elemento[:3]]= 1
             else:
                 dif9[elemento[:3]]+= 1
-
+    archivo.close()
     return dif9
 
 def pregunta_10():
@@ -273,13 +284,15 @@ def pregunta_10():
         ("E", 2, 3),
         ("E", 3, 3),
     ]"""
+    archivo= open("data.csv","r")
+    datos= [i.split() for i in archivo.read().split("\n")]
 
     res= []
     for aux in datos:   # E	1	1999-02-28	b,g,f	jjj:12,bbb:3,ddd:9,ggg:8,hhh:2
         q4= len(aux[3].split(','))
         q5= len(aux[4].split(','))
         res.append((aux[0],q4,q5))
-
+    archivo.close()
     return res
 
 def pregunta_11():
@@ -294,6 +307,8 @@ def pregunta_11():
         "f": 134,
         "g": 35,
     } """
+    archivo= open("data.csv","r")
+    datos= [i.split() for i in archivo.read().split("\n")]
 
     dif11={}     # claves diferentes
     for aux in datos:   # E	1	1999-02-28	b,g,f	jjj:12,bbb:3,ddd:9,ggg:8,hhh:2
@@ -302,7 +317,7 @@ def pregunta_11():
                 dif11[elemento]= int(aux[1])
             else:
                 dif11[elemento]+= int(aux[1])
-
+    archivo.close()
     return dif11
 
 def pregunta_12():
@@ -315,6 +330,8 @@ def pregunta_12():
         'D': 136,
         'E': 324
     }"""
+    archivo= open("data.csv","r")
+    datos= [i.split() for i in archivo.read().split("\n")]
 
     dif12={}     # claves diferentes
     for aux in datos:   # E	1	1999-02-28	b,g,f	jjj:12,bbb:3,ddd:9,ggg:8,hhh:2
@@ -326,5 +343,5 @@ def pregunta_12():
             dif12[aux[0]]= valores
         else:
             dif12[aux[0]]+= valores
-
+    archivo.close()
     return dif12

@@ -247,7 +247,7 @@ def pregunta_07():
 
     res=[]
     for a in sorted(dif7):
-        res.append((a,dif7[a]))
+        res.append((int(a),dif7[a]))
 
     return res
 
@@ -285,7 +285,7 @@ def pregunta_08():
 
     res=[]
     for a in sorted(dif8):
-        res.append((a,dif8[a]))
+        res.append((int(a),dif8[a]))
 
     return res
 

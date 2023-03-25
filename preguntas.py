@@ -9,6 +9,8 @@ básicas.
 
 Utilice el archivo `data.csv` para resolver las preguntas.
 
+Realizado por Luis Felipe Moreno Chamorro
+Para Fundamentos de analitica
 
 """
 def leerArchivo():
@@ -317,6 +319,7 @@ def pregunta_09():
             else:
                 dif9[elemento[:3]]+= 1
 
+    dif9= dict(sorted(dif9.items()))
     return dif9
 
 def pregunta_10():
@@ -344,7 +347,7 @@ def pregunta_10():
         q4= len(aux[3].split(','))
         q5= len(aux[4].split(','))
         res.append((aux[0],q4,q5))
-
+    # al parecer no tiene que estar ordenado...
     return res
 
 def pregunta_11():
@@ -375,6 +378,7 @@ def pregunta_11():
             else:
                 dif11[elemento]+= int(aux[1])
 
+    dif11= dict(sorted(dif11.items()))
     return dif11
 
 def pregunta_12():
@@ -405,4 +409,5 @@ def pregunta_12():
         else:
             dif12[aux[0]]+= valores
 
+    dif12= dict(sorted(dif12.items()))
     return dif12

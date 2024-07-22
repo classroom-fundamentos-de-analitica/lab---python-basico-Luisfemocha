@@ -9,9 +9,17 @@ básicas.
 
 Utilice el archivo `data.csv` para resolver las preguntas.
 
+Realizado por Luis Felipe Moreno Chamorro
+Para Fundamentos de analitica
 
 """
+def leerArchivo():
+    archivo= open("data.csv","r")
+    datos= [i.split() for i in archivo.read().split("\n")]
+    datos= datos[:-1] # eliminar el ultimo espacio vacio
+    archivo.close()
 
+    return datos
 
 def pregunta_01():
     """
@@ -21,8 +29,10 @@ def pregunta_01():
     214
 
     """
-    return
+    datos= leerArchivo()
+    res= sum(int(i[1]) for i in datos)   # suma de la segunda columna for i in datos: res+= int(i[1])
 
+    return res
 
 def pregunta_02():
     """
@@ -39,8 +49,20 @@ def pregunta_02():
     ]
 
     """
-    return
+    datos= leerArchivo()
 
+    dif2={}
+    for aux in datos:
+        if aux[0] not in dif2.keys():
+            dif2[aux[0]]= 1
+        else:
+            dif2[aux[0]]+=1
+
+    res=[]
+    for a in sorted(dif2):
+        res.append((a,dif2[a]))
+
+    return res
 
 def pregunta_03():
     """
@@ -57,8 +79,20 @@ def pregunta_03():
     ]
 
     """
-    return
+    datos= leerArchivo()
 
+    dif3={}         # letras diferentes dif3 = list(set(i[0] for i in datos))
+    for aux in datos:
+        if aux[0] not in dif3.keys():
+            dif3[aux[0]]= int(aux[1])
+        else:
+            dif3[aux[0]]+= int(aux[1])
+
+    res=[]
+    for a in sorted(dif3):
+        res.append((a,dif3[a]))
+
+    return res
 
 def pregunta_04():
     """
@@ -82,8 +116,22 @@ def pregunta_04():
     ]
 
     """
-    return
+    datos= leerArchivo()
 
+    meses4={}   # meses diferentes
+    res= '['    # string a devolver...
+    for aux in datos:
+        mes= aux[2][5:7]   # 1999-02-28
+        if mes not in meses4.keys():
+            meses4[mes]= 1
+        else:
+            meses4[mes]+= 1
+
+    res=[]
+    for mes in sorted(meses4):
+        res.append((mes,meses4[mes]))
+
+    return res
 
 def pregunta_05():
     """
@@ -100,8 +148,25 @@ def pregunta_05():
     ]
 
     """
-    return
+    datos= leerArchivo()
+    max5={}     # maximos
+    min5={}     # minimos
+    for aux in datos:
+        if aux[0] not in max5.keys():
+            max5[aux[0]]= int(aux[1])
+            min5[aux[0]]= int(aux[1])
+        else:
+            if max5[aux[0]]< int(aux[1]):
+                max5[aux[0]]= int(aux[1])
 
+            if min5[aux[0]]> int(aux[1]):
+                min5[aux[0]]= int(aux[1])
+
+    res=[]
+    for a in sorted(max5):
+        res.append((a,max5[a],min5[a]))
+
+    return res
 
 def pregunta_06():
     """
@@ -125,8 +190,30 @@ def pregunta_06():
     ]
 
     """
-    return
+    datos= leerArchivo()
 
+    max6={}     # maximos
+    min6={}     # minimos
+    res= '['    # string a devolver...
+    for aux in datos:   # jjj:12,bbb:3,ddd:9,ggg:8,hhh:2
+        for elemento in aux[4].split(','):
+            clave= elemento[:3]
+            valor= elemento[4:]
+            if clave not in max6.keys():
+                max6[clave]= int(valor)
+                min6[clave]= int(valor)
+            else:
+                if max6[clave]< int(valor):
+                    max6[clave]= int(valor)
+
+                if min6[clave]> int(valor):
+                    min6[clave]= int(valor)
+
+    res=[]
+    for a in sorted(max6):
+        res.append((a,min6[a],max6[a]))
+
+    return res
 
 def pregunta_07():
     """
@@ -149,8 +236,20 @@ def pregunta_07():
     ]
 
     """
-    return
+    datos= leerArchivo()
 
+    dif7={}     # numeros diferentes
+    for aux in datos:
+        if aux[1] not in dif7.keys():
+            dif7[aux[1]]= [aux[0]]
+        else:
+            dif7[aux[1]].append(aux[0])
+
+    res=[]
+    for a in sorted(dif7):
+        res.append((int(a),dif7[a]))
+
+    return res
 
 def pregunta_08():
     """
@@ -174,8 +273,21 @@ def pregunta_08():
     ]
 
     """
-    return
+    datos= leerArchivo()
 
+    dif8={}     # numeros diferentes
+    for aux in datos:
+        if aux[1] not in dif8.keys():
+            dif8[aux[1]]= [aux[0]]
+        elif aux[0] not in dif8[aux[1]]:
+            dif8[aux[1]].append(aux[0])
+            dif8[aux[1]].sort()
+
+    res=[]
+    for a in sorted(dif8):
+        res.append((int(a),dif8[a]))
+
+    return res
 
 def pregunta_09():
     """
@@ -197,8 +309,18 @@ def pregunta_09():
     }
 
     """
-    return
+    datos= leerArchivo()
 
+    dif9={}     # claves diferentes
+    for aux in datos:   # jjj:12,bbb:3,ddd:9,ggg:8,hhh:2
+        for elemento in aux[4].split(','):
+            if elemento[:3] not in dif9.keys():
+                dif9[elemento[:3]]= 1
+            else:
+                dif9[elemento[:3]]+= 1
+
+    dif9= dict(sorted(dif9.items()))
+    return dif9
 
 def pregunta_10():
     """
@@ -218,8 +340,15 @@ def pregunta_10():
 
 
     """
-    return
+    datos= leerArchivo()
 
+    res= []
+    for aux in datos:   # E	1	1999-02-28	b,g,f	jjj:12,bbb:3,ddd:9,ggg:8,hhh:2
+        q4= len(aux[3].split(','))
+        q5= len(aux[4].split(','))
+        res.append((aux[0],q4,q5))
+    # al parecer no tiene que estar ordenado...
+    return res
 
 def pregunta_11():
     """
@@ -239,8 +368,18 @@ def pregunta_11():
 
 
     """
-    return
+    datos= leerArchivo()
 
+    dif11={}     # claves diferentes
+    for aux in datos:   # E	1	1999-02-28	b,g,f	jjj:12,bbb:3,ddd:9,ggg:8,hhh:2
+        for elemento in aux[3].split(','):
+            if elemento not in dif11.keys():
+                dif11[elemento]= int(aux[1])
+            else:
+                dif11[elemento]+= int(aux[1])
+
+    dif11= dict(sorted(dif11.items()))
+    return dif11
 
 def pregunta_12():
     """
@@ -257,4 +396,18 @@ def pregunta_12():
     }
 
     """
-    return
+    datos= leerArchivo()
+
+    dif12={}     # claves diferentes
+    for aux in datos:   # E	1	1999-02-28	b,g,f	jjj:12,bbb:3,ddd:9,ggg:8,hhh:2
+        valores=0
+        for elemento in aux[4].split(','):
+            valores+= int(elemento[4:])
+
+        if aux[0] not in dif12.keys():
+            dif12[aux[0]]= valores
+        else:
+            dif12[aux[0]]+= valores
+
+    dif12= dict(sorted(dif12.items()))
+    return dif12
